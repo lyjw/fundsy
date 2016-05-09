@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fundsy</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= link_to "Home", root_path %> |
+  <%= link_to "New Campaign", new_campaign_path %> |
+
+  <% if user_signed_in? %>
+    Hello, <%= current_user.full_name %>
+  <% else %>
+    <%= link_to "Sign up", new_user_path %>
+  <% end %>
+
+  <% if notice %>
+    <div class = "alert alert-success"><%= notice %></div>
+  <% elsif alert %>
+    <div class = "alert alert-danger"><%= alert %></div>
+  <% end %>
+
+  <%= yield %>
+
+</body>
+</html>
