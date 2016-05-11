@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420181651) do
+ActiveRecord::Schema.define(version: 20160510175141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,10 @@ ActiveRecord::Schema.define(version: 20160420181651) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
 
   create_table "pledges", force: :cascade do |t|
     t.float    "amount"
@@ -43,8 +46,12 @@ ActiveRecord::Schema.define(version: 20160420181651) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "api_key"
   end
 
+  add_index "users", ["api_key"], name: "index_users_on_api_key", unique: true, using: :btree
+
+  add_foreign_key "campaigns", "users"
   add_foreign_key "pledges", "campaigns"
   add_foreign_key "pledges", "users"
 end

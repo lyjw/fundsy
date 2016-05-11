@@ -3,8 +3,18 @@ Rails.application.routes.draw do
   resources :campaigns do
     resources :pledges, only: [:new, :create]
   end
-  
+
   resources :users, only: [:new, :create]
+
+
+  # Automatically supports API folder structure
+  # get "/api/v1/campaigns" => "api/v1/campaigns#index"
+  # Using scope would create routes that navigate back to the original campaigns routes. Namespacing
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :campaigns
+    end
+  end
 
   root "campaigns#index"
 
