@@ -1,0 +1,8 @@
+<div class="nested-fields">
+  <%= f.input :amount  %>
+  <%= f.input :description  %>
+  <%# Simple form does not know this is an action %>
+  <%= f.input :_destroy, as: :boolean %>
+  <%= link_to_remove_association "Remove Reward", f, class:"btn btn-danger" %>
+  <hr>
+</div>

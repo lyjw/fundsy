@@ -1,0 +1,20 @@
+<%= simple_form_for @campaign do |f| %>
+  <%= f.input :title %>
+  <%= f.input :body %>
+  <%= f.input :goal, as: :string %>
+  <%= f.input :end_date %>
+  <%= f.input :address %>
+
+  <h3>Rewards</h3>
+  <div id="rewards">
+    <%= f.simple_fields_for :rewards do |r| %>
+      <!-- <h4># <%# r.index + 1 %></h4> -->
+      <%= render "reward_fields", f: r %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add Rewards', f, :rewards %>
+    </div>
+  </div>
+
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

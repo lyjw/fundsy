@@ -38,6 +38,23 @@ gem 'simple_form'
 gem 'active_model_serializers'
 
 gem 'omniauth-twitter'
+gem 'twitter'
+
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+
+gem 'sidekiq'
+
+gem 'cocoon'
+gem 'quiet_assets'
+
+gem 'aasm'
+
+gem 'draper'
+
+gem 'stripe'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

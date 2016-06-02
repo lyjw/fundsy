@@ -2,9 +2,21 @@ Rails.application.routes.draw do
 
   resources :campaigns do
     resources :pledges, only: [:new, :create]
+    resources :publishings, only: [] do
+      patch :update, on: :collection
+    end
   end
 
+  # Creates /pledges/:pledge_id/payments...
+  resources :pledges, only: [] do
+    resources :payments, only: [:new, :create]
+  end
+
+  resources :nearby_campaigns, only: [:index]
+
   resources :users, only: [:new, :create]
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/auth/twitter/callback" => "callbacks#twitter"
 
 
   # Automatically supports API folder structure
